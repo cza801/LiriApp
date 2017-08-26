@@ -1,0 +1,16 @@
+{
+  "name": "liri",
+  "version": "1.0.0",
+  "description": "language interpretation and recognition interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cesar P",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "inquire": "^0.4.8",
+    "twitter": "^1.7.1"
+  }
+}
