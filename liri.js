@@ -6,13 +6,23 @@ var twKeys = keys.twitterKeys;
 // This is all all my NPM homies
 var inquirer = require("inquire");
 var twitter = require("twitter");
+var request = require("request");
 // var fs = request("fs");
 
 // user input 
 var input = process.argv[2];
+var movieTitle = process.argv[3];
+
+// Attempting to get more than 1 word responces. 
+// var movieTitle;
+// for (var i = 1; i < process.argv.length; i++) {
+// 	movieTitle = process.argv[i];
+// }
+
+
+
 
 //User commands
-
 if (input === "my-tweets") {
 	return mytweets();
 }
@@ -47,4 +57,32 @@ function mytweets() {
 			}
 		} 
 	});
+}
+
+if (input === "movie-this") {
+	omdbInfo(movieTitle);
+}
+
+function omdbInfo(movieTitle) {
+	request("http://www.omdbapi.com/?t=" + movieTitle + "&y=&plot=short&apikey=40e9cece", function (error, response, body) {
+		if(error){
+			console.log(error);
+		};
+		omdbReturn = JSON.parse(body);
+
+		console.log(omdbReturn.Title);
+		console.log("Year: " + omdbReturn.Year);
+		console.log( "IMDB Rating: " + omdbReturn.imdbRating);
+		console.log("Rotten Tomatoes Rating: " + omdbReturn.Ratings[1].Value);
+		console.log("Country produced in: " + omdbReturn.Country);
+		console.log("Language: " + omdbReturn.Language);
+		console.log("Plot: " + omdbReturn.Plot);
+		console.log("Actors: " + omdbReturn.Actors);
+
+
+
+
+		// console.log(omdbReturn);
+
+	})
 }
